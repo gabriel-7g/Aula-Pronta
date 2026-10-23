@@ -1,0 +1,5 @@
+.area-card { text-align: center; }
+.area-card h1 { font: 600 1.8rem 'Fraunces', serif; margin: 8px 0 15px; }
+.area-card p { color: var(--tinta-suave); font-size: .9rem; line-height: 1.6; }
+.area-card strong { color: var(--tinta); }
+.area-card .area-aviso { padding: 14px; background: #f6f1e4; border-radius: 8px; margin: 22px 0; }
