@@ -1,4 +1,4 @@
-# AulaPronta (Lousa) — Como instalar e executar no computador do professor
+# AulaPronta (Lousa) — Como instalar e executar no computador
 
 > **Objetivo:** baixar a versão de apresentação semanal diretamente do GitHub e executar **frontend, backend e banco SQLite local** em outro computador Windows, sem usar o Supabase e sem instalar PostgreSQL.
 >
