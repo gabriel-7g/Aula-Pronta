@@ -25,7 +25,7 @@
 
 O Ionic CLI global **não é obrigatório** para executar este projeto: `npm run dev` usa os scripts definidos em cada `package.json`.
 
-### 2.2 Copiar os arquivos para o computador do professor
+### 2.2 Copiar os arquivos para o computador 
 
 1. No computador em que o projeto foi desenvolvido, abra a pasta `lousa-login-apresentacao`.
 2. Copie a pasta para um pendrive, uma pasta compartilhada ou outro meio **sem precisar compactá-la em ZIP**.
