@@ -1,6 +1,6 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import { pool } from '../db';
+import { db } from '../db';
 import { config } from '../config';
 
 export interface UsuarioPublico {
@@ -9,36 +9,64 @@ export interface UsuarioPublico {
   email: string;
   tipo: 'admin' | 'usuario';
 }
-interface UsuarioBanco extends UsuarioPublico { senha: string }
 
-export async function autenticarUsuario(email: string, senha: string) {
-  const emailNormalizado = email.trim().toLowerCase();
+interface UsuarioBanco extends UsuarioPublico {
+  senha: string;
+}
 
-  // $1 é um parâmetro seguro, evitando injeção de SQL.
-  const consulta = await pool.query<UsuarioBanco>(
-    'SELECT id, nome, email, senha, tipo FROM usuarios WHERE LOWER(email) = $1 LIMIT 1',
-    [emailNormalizado]
-  );
-  const usuario = consulta.rows[0];
+export async function autenticarUsuario(
+  email: string,
+  senha: string
+) {
+  const usuario = db.prepare(
+    `SELECT id, nome, email, senha, tipo
+     FROM usuarios
+     WHERE email = ?
+     LIMIT 1`
+  ).get(email.trim().toLowerCase()) as
+    unknown as UsuarioBanco | undefined;
+
   if (!usuario) return null;
-  const senhaCorreta = await bcrypt.compare(senha, usuario.senha);
+
+  const senhaCorreta = await bcrypt.compare(
+    senha,
+    usuario.senha
+  );
+
   if (!senhaCorreta) return null;
 
-  const dadosPublicos: UsuarioPublico = {
-    id: usuario.id, nome: usuario.nome, email: usuario.email, tipo: usuario.tipo
+  const usuarioPublico: UsuarioPublico = {
+    id: usuario.id,
+    nome: usuario.nome,
+    email: usuario.email,
+    tipo: usuario.tipo
   };
+
   const token = jwt.sign(
-    { sub: usuario.id, email: usuario.email, tipo: usuario.tipo },
+    {
+      sub: usuario.id,
+      email: usuario.email,
+      tipo: usuario.tipo
+    },
     config.jwtSecret,
     { expiresIn: '8h' }
   );
-  return { token, usuario: dadosPublicos };
+
+  return {
+    token,
+    usuario: usuarioPublico
+  };
 }
 
-export async function buscarUsuarioPorId(id: string): Promise<UsuarioPublico | null> {
-  const consulta = await pool.query<UsuarioPublico>(
-    'SELECT id, nome, email, tipo FROM usuarios WHERE id = $1 LIMIT 1',
-    [id]
-  );
-  return consulta.rows[0] || null;
+export async function buscarUsuarioPorId(
+  id: string
+): Promise<UsuarioPublico | null> {
+  const usuario = db.prepare(
+    `SELECT id, nome, email, tipo
+     FROM usuarios
+     WHERE id = ?
+     LIMIT 1`
+  ).get(id) as unknown as UsuarioPublico | undefined;
+
+  return usuario || null;
 }

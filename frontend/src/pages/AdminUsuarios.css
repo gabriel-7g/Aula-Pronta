@@ -1,0 +1,148 @@
+
+.admin-container {
+  width: min(900px, 100%);
+}
+
+.admin-topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-topo .auth-marca {
+  margin: 0 0 20px;
+}
+
+.admin-sair {
+  border: 1px solid #20402f;
+  border-radius: 7px;
+  background: transparent;
+  color: #20402f;
+  padding: 9px 17px;
+  cursor: pointer;
+}
+
+.admin-card {
+  padding: 36px;
+}
+
+.admin-cabecalho {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.admin-cabecalho h1 {
+  font: 600 2rem 'Fraunces', serif;
+  margin: 8px 0;
+}
+
+.admin-cabecalho p {
+  color: var(--tinta-suave);
+  font-size: .9rem;
+}
+
+.admin-secao {
+  border-top: 1px solid var(--borda);
+  padding-top: 22px;
+  margin-top: 24px;
+}
+
+.admin-secao h2 {
+  font: 600 1.25rem 'Fraunces', serif;
+  margin: 0 0 18px;
+}
+
+.admin-campos {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.admin-formulario .auth-botao-principal {
+  max-width: 280px;
+  margin-top: 20px;
+}
+
+.admin-lista {
+  border: 1px solid var(--borda);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.admin-usuario {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-bottom: 1px solid var(--borda);
+}
+
+.admin-usuario:last-child {
+  border-bottom: none;
+}
+
+.admin-dados {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.admin-dados strong,
+.admin-dados span {
+  overflow-wrap: anywhere;
+}
+
+.admin-dados span {
+  font-size: .8rem;
+  color: var(--tinta-suave);
+}
+
+.admin-tipo {
+  font-size: .8rem;
+  color: #20402f;
+}
+
+.admin-excluir {
+  background: transparent;
+  border: 1px solid #b04a3a;
+  color: #b04a3a;
+  border-radius: 6px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+.admin-excluir:hover {
+  background: #fff0ed;
+}
+
+.admin-feedback {
+  padding: 12px;
+  border-radius: 7px;
+  font-size: .9rem;
+}
+
+.admin-erro {
+  color: #a23b30;
+  background: #fff0ed;
+}
+
+.admin-sucesso {
+  color: #20402f;
+  background: #e5f2e8;
+}
+
+@media (max-width: 650px) {
+  .admin-card {
+    padding: 30px 18px;
+  }
+
+  .admin-campos {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-usuario {
+    flex-wrap: wrap;
+  }
+}

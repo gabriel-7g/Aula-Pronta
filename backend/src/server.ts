@@ -2,36 +2,63 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
+import usuarioRoutes from './routes/usuarioRoutes';
+
 import { config } from './config';
-import { pool } from './db';
+import { db } from './db';
 import authRoutes from './routes/authRoutes';
 
 const app = express();
-app.disable('x-powered-by');
+
 app.use(helmet());
-app.use(cors({ origin: config.frontendUrl, methods: ['GET', 'POST'], allowedHeaders: ['Content-Type', 'Authorization'] }));
-app.use(express.json({ limit: '20kb' }));
+app.use(cors({
+  origin: config.frontendUrl
+}));
+app.use(express.json());
+
 app.use('/api/auth/login', rateLimit({
   windowMs: 15 * 60 * 1000,
   limit: 20,
   standardHeaders: 'draft-8',
   legacyHeaders: false,
-  message: { erro: 'Muitas tentativas de login. Tente novamente mais tarde.' }
+  message: {
+    erro: 'Muitas tentativas de login.'
+  }
 }));
-app.use('/api/auth', authRoutes);
 
-app.get('/api/health', async (_req, res) => {
+app.use('/api/auth', authRoutes);
+app.use('/api/usuarios', usuarioRoutes);
+
+app.get('/api/health', (_req, res) => {
   try {
-    await pool.query('SELECT 1');
-    res.json({ status: 'online', banco: 'conectado' });
+    db.prepare('SELECT 1').get();
+
+    res.json({
+      status: 'online',
+      banco: 'conectado',
+      tipo: 'SQLite local'
+    });
   } catch {
-    res.status(503).json({ status: 'erro', banco: 'desconectado' });
+    res.status(500).json({
+      status: 'erro',
+      banco: 'desconectado'
+    });
   }
 });
-app.use((_req, res) => { res.status(404).json({ erro: 'Rota não encontrada.' }); });
 
-const servidor = app.listen(config.port, '127.0.0.1', () => {
-  console.log(`API Lousa disponível em http://localhost:${config.port}`);
+
+app.get('/', (_req, res) => {
+  res.status(200).json({
+    projeto: 'AulaPronta',
+    mensagem: 'Bem-vindo à API do AulaPronta!',
+    status: 'online',
+    banco: 'SQLite Local'
+  });
 });
 
-process.on('SIGINT', () => { servidor.close(() => pool.end().finally(() => process.exit(0))); });
+
+app.listen(config.port, () => {
+  console.log(
+    `Servidor rodando em http://localhost:${config.port}`
+  );
+});

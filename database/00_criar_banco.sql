@@ -1,3 +1,9 @@
--- Execute UMA VEZ no Query Tool do banco padrão 'postgres', e não no 'lousa_login'.
--- Se o banco já existir, não execute novamente.
-CREATE DATABASE lousa_login;
+CREATE TABLE IF NOT EXISTS usuarios (
+    id TEXT PRIMARY KEY,
+    nome TEXT NOT NULL,
+    email TEXT NOT NULL UNIQUE,
+    senha TEXT NOT NULL,
+    tipo TEXT NOT NULL DEFAULT 'usuario'
+        CHECK (tipo IN ('admin', 'usuario')),
+    criado_em TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
