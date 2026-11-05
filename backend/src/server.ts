@@ -1,19 +1,24 @@
+
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import { rateLimit } from 'express-rate-limit';
-import usuarioRoutes from './routes/usuarioRoutes';
 
 import { config } from './config';
 import { db } from './db';
+
 import authRoutes from './routes/authRoutes';
+import usuarioRoutes from './routes/usuarioRoutes';
+import planejamentoRoutes from './routes/planejamentoRoutes';
 
 const app = express();
 
 app.use(helmet());
+
 app.use(cors({
   origin: config.frontendUrl
 }));
+
 app.use(express.json());
 
 app.use('/api/auth/login', rateLimit({
@@ -26,9 +31,16 @@ app.use('/api/auth/login', rateLimit({
   }
 }));
 
+// Autenticação.
 app.use('/api/auth', authRoutes);
+
+// Gerenciamento de professores.
 app.use('/api/usuarios', usuarioRoutes);
 
+// Gerenciamento dos planejamentos de aula.
+app.use('/api/planejamentos', planejamentoRoutes);
+
+// Verificar conexão da API e do banco.
 app.get('/api/health', (_req, res) => {
   try {
     db.prepare('SELECT 1').get();
@@ -46,7 +58,6 @@ app.get('/api/health', (_req, res) => {
   }
 });
 
-
 app.get('/', (_req, res) => {
   res.status(200).json({
     projeto: 'AulaPronta',
@@ -55,7 +66,6 @@ app.get('/', (_req, res) => {
     banco: 'SQLite Local'
   });
 });
-
 
 app.listen(config.port, () => {
   console.log(
