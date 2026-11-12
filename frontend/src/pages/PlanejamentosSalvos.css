@@ -1,0 +1,252 @@
+
+/* ==========================================
+   AULAPRONTA - PÁGINA DE AULAS SALVAS
+========================================== */
+
+/* CABEÇALHO */
+
+.pl-salvos .pl-cabecalho {
+  margin-bottom: 35px;
+}
+
+/* ÁREA DE PESQUISA */
+
+.pl-salvos .pl-secao-filtros {
+  padding: 26px;
+  border: 1px solid rgba(32, 64, 47, 0.12);
+  border-radius: 14px;
+  background: #f7f6ee;
+}
+
+.pl-salvos .pl-secao-filtros h2 {
+  margin: 0 0 22px;
+  color: #193227;
+  font-family: 'Fraunces', serif;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+/* PESQUISA E FILTRO LADO A LADO */
+
+.pl-salvos .pl-filtros {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  gap: 18px;
+  align-items: end;
+}
+
+/* CONTAGEM DE RESULTADOS */
+
+.pl-salvos .pl-filtros-rodape {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 22px;
+}
+
+.pl-salvos .pl-filtros-rodape p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #625d50;
+}
+
+/* LISTA DE AULAS */
+
+.pl-salvos .pl-secao {
+  margin-top: 30px;
+  padding-top: 30px;
+}
+
+.pl-salvos .pl-lista {
+  display: grid;
+  gap: 20px;
+}
+
+/* CARTÃO DE CADA AULA */
+
+.pl-salvos .pl-item {
+  position: relative;
+  padding: 26px;
+  background: #fffdf7;
+  border: 1px solid rgba(34, 31, 25, 0.13);
+  border-radius: 14px;
+  box-shadow: 0 5px 18px rgba(34, 31, 25, 0.04);
+
+  transition:
+    box-shadow 0.2s ease,
+    border-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pl-salvos .pl-item:hover {
+  border-color: rgba(32, 64, 47, 0.25);
+  box-shadow: 0 10px 25px rgba(34, 31, 25, 0.07);
+  transform: translateY(-2px);
+}
+
+/* BARRA DECORATIVA VERDE */
+
+.pl-salvos .pl-item::before {
+  content: "";
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 0;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: #20402f;
+}
+
+/* TÍTULO E INFORMAÇÕES */
+
+.pl-salvos .pl-item h3 {
+  margin-bottom: 10px;
+  color: #193227;
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  line-height: 1.3;
+}
+
+.pl-salvos .pl-item p {
+  margin: 12px 0;
+  font-size: 0.88rem;
+  color: #625d50;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+  white-space: pre-wrap;
+}
+
+.pl-salvos .pl-item strong {
+  color: #20402f;
+}
+
+/* DATA DA AULA */
+
+.pl-salvos .pl-data {
+  padding: 8px 12px;
+  background: #eaf1e8;
+  border: 1px solid #d6e3d4;
+  border-radius: 8px;
+  font-size: 0.79rem;
+  font-weight: 700;
+  color: #20402f;
+}
+
+/* BOTÕES DE EDIÇÃO E EXCLUSÃO */
+
+.pl-salvos .pl-item .pl-acoes {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 24px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(34, 31, 25, 0.1);
+}
+
+.pl-salvos .pl-item .pl-acoes button {
+  min-height: 43px;
+}
+
+/* RESULTADOS VAZIOS */
+
+.pl-salvos .pl-vazio {
+  padding: 38px 24px;
+  border-radius: 12px;
+  text-align: center;
+  background: #faf8f0;
+}
+
+.pl-salvos .pl-vazio p {
+  margin: 0 0 16px;
+  color: #625d50;
+}
+
+.pl-salvos .pl-vazio button {
+  margin-top: 8px;
+}
+
+/* TABLET */
+
+@media (max-width: 720px) {
+  .pl-salvos .pl-filtros {
+    grid-template-columns: 1fr;
+  }
+
+  .pl-salvos .pl-secao-filtros {
+    padding: 22px;
+  }
+}
+
+/* CELULAR */
+
+@media (max-width: 480px) {
+  .pl-salvos .pl-secao-filtros {
+    padding: 18px;
+  }
+
+  .pl-salvos .pl-item {
+    padding: 22px 18px;
+  }
+
+  .pl-salvos .pl-item h3 {
+    font-size: 1.18rem;
+  }
+
+  .pl-salvos .pl-item .pl-acoes {
+    flex-direction: column;
+  }
+
+  .pl-salvos .pl-item .pl-acoes button {
+    width: 100%;
+  }
+
+  .pl-salvos .pl-data {
+    align-self: flex-start;
+  }
+}
+
+
+/* SEMANA 4 - BOTÃO EXPORTAR PDF */
+
+.pl-botao-pdf {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  min-height: 46px;
+  padding: 12px 20px;
+
+  background: #20402f;
+  color: #ffffff;
+
+  border: 1.5px solid #20402f;
+  border-radius: 9px;
+
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.87rem;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease;
+}
+
+.pl-botao-pdf:hover {
+  background: #193227;
+  transform: translateY(-1px);
+}
+
+.pl-botao-pdf:focus-visible {
+  outline: 3px solid #e5c35d;
+  outline-offset: 3px;
+}
+
+@media (max-width: 480px) {
+  .pl-botao-pdf {
+    width: 100%;
+  }
+}

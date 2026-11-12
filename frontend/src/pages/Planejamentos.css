@@ -1,68 +1,127 @@
 
+/* ==========================================
+   AULAPRONTA - ESTILOS DOS PLANEJAMENTOS
+   Compartilhado entre cadastro e aulas salvas
+========================================== */
+
+/* ESTRUTURA GERAL */
+
 .pl-pagina {
-  align-items: flex-start;
+  width: 100%;
+  min-height: 100%;
+  padding: 42px 24px 60px;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .pl-container {
-  width: min(1050px, 100%);
+  width: min(1000px, 100%);
+  min-width: 0;
   margin: 0 auto;
 }
 
+/* CABEÇALHO */
+
 .pl-topo {
   display: flex;
-  align-items: center;
   justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
   gap: 20px;
-  margin-bottom: 25px;
+  margin-bottom: 32px;
 }
 
 .pl-topo .auth-marca {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   margin: 0;
 }
 
 .pl-navegacao {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: flex-end;
   flex-wrap: wrap;
+  gap: 12px;
 }
 
+.pl-navegacao button {
+  width: auto;
+  min-height: 42px;
+}
+
+/* CARTÃO PRINCIPAL */
+
 .pl-card {
-  padding: 36px;
+  width: 100%;
+  padding: 38px 42px 42px;
+  border-radius: 16px;
+  background: #fffdf7;
+  border: 1px solid rgba(34, 31, 25, 0.1);
+  box-shadow: 0 16px 45px rgba(34, 31, 25, 0.08);
 }
 
 .pl-cabecalho {
   text-align: center;
-  margin-bottom: 32px;
+  margin-bottom: 36px;
+}
+
+.pl-cabecalho .auth-etiqueta {
+  margin-bottom: 10px;
 }
 
 .pl-cabecalho h1 {
+  margin: 0 0 12px;
   font-family: 'Fraunces', serif;
-  font-size: 2rem;
-  margin: 10px 0;
+  font-size: clamp(1.7rem, 4vw, 2.35rem);
+  font-weight: 600;
+  line-height: 1.2;
+  color: #193227;
 }
 
 .pl-cabecalho p {
-  color: var(--tinta-suave);
-  font-size: .9rem;
+  margin: 0;
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: #625d50;
 }
+
+/* TÍTULOS DAS SEÇÕES */
 
 .pl-formulario h2,
 .pl-secao h2 {
+  margin: 0 0 24px;
+  color: #193227;
   font-family: 'Fraunces', serif;
-  font-size: 1.3rem;
-  margin: 0 0 20px;
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+/* FORMULÁRIO */
+
+.pl-formulario {
+  width: 100%;
+  display: block;
 }
 
 .pl-campos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 18px;
+  column-gap: 22px;
+  row-gap: 22px;
+  width: 100%;
 }
+
+/* Cada campo terá o título em cima do input */
 
 .pl-campo {
   display: flex;
   flex-direction: column;
-  gap: 7px;
+  align-items: stretch;
+  gap: 9px;
+  min-width: 0;
+  width: 100%;
 }
 
 .pl-campo-inteiro {
@@ -70,169 +129,315 @@
 }
 
 .pl-campo label {
-  font-size: .85rem;
+  display: block;
+  width: 100%;
+  margin: 0;
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.86rem;
   font-weight: 700;
-  color: var(--tinta-suave);
+  line-height: 1.4;
+  color: #403e35;
+}
+
+/* Inputs, select e textarea */
+
+.pl-campo input,
+.pl-campo textarea,
+.pl-campo select {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+
+  padding: 13px 15px;
+
+  border: 1.5px solid rgba(34, 31, 25, 0.17);
+  border-radius: 10px;
+
+  background: #ffffff;
+  color: #221f19;
+
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.92rem;
+  line-height: 1.5;
+
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
 }
 
 .pl-campo input,
+.pl-campo select {
+  min-height: 49px;
+}
+
 .pl-campo textarea {
-  width: 100%;
-  padding: 12px;
-  border: 1.5px solid var(--borda);
-  border-radius: 8px;
-  background: white;
-  color: var(--tinta);
-  font: inherit;
-  outline: none;
+  min-height: 115px;
+  resize: vertical;
+}
+
+.pl-campo input::placeholder,
+.pl-campo textarea::placeholder {
+  color: #9c998f;
+  opacity: 1;
 }
 
 .pl-campo input:focus,
-.pl-campo textarea:focus {
-  border-color: var(--verde-lousa-700);
+.pl-campo textarea:focus,
+.pl-campo select:focus {
+  border-color: #20402f;
+  box-shadow: 0 0 0 3px rgba(32, 64, 47, 0.09);
 }
 
-.pl-campo textarea {
-  resize: vertical;
-  min-height: 90px;
+.pl-campo input:hover,
+.pl-campo textarea:hover,
+.pl-campo select:hover {
+  border-color: rgba(32, 64, 47, 0.4);
 }
+
+/* BOTÕES */
 
 .pl-acoes {
   display: flex;
-  gap: 10px;
+  align-items: center;
   flex-wrap: wrap;
-  margin-top: 20px;
+  gap: 12px;
+  margin-top: 28px;
 }
 
 .pl-botao-principal,
 .pl-botao-secundario,
 .pl-botao-excluir {
-  border-radius: 8px;
-  padding: 11px 18px;
-  font: inherit;
-  font-size: .88rem;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+
+  min-height: 46px;
+  padding: 12px 20px;
+
+  border-radius: 9px;
+
+  font-family: 'Work Sans', sans-serif;
+  font-size: 0.87rem;
   font-weight: 700;
+  text-decoration: none;
+  line-height: 1.3;
+
   cursor: pointer;
+
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
 }
 
 .pl-botao-principal {
-  background: var(--verde-lousa-700);
-  color: white;
-  border: 1px solid var(--verde-lousa-700);
+  background: #20402f;
+  color: #ffffff;
+  border: 1.5px solid #20402f;
 }
 
 .pl-botao-principal:hover {
-  background: var(--verde-lousa-800);
+  background: #193227;
+  transform: translateY(-1px);
 }
 
 .pl-botao-secundario {
-  color: var(--verde-lousa-700);
   background: transparent;
-  border: 1px solid var(--verde-lousa-700);
+  color: #20402f;
+  border: 1.5px solid #20402f;
+}
+
+.pl-botao-secundario:hover {
+  background: rgba(32, 64, 47, 0.07);
 }
 
 .pl-botao-excluir {
-  color: #b04a3a;
   background: transparent;
-  border: 1px solid #b04a3a;
+  color: #b04a3a;
+  border: 1.5px solid #b04a3a;
+}
+
+.pl-botao-excluir:hover {
+  background: #fff0ed;
 }
 
 .pl-botao-principal:disabled,
-.pl-botao-secundario:disabled {
-  opacity: .55;
+.pl-botao-secundario:disabled,
+.pl-botao-excluir:disabled {
+  opacity: 0.55;
   cursor: not-allowed;
+  transform: none;
 }
 
+/* LISTAGEM COMPARTILHADA */
+
 .pl-secao {
-  border-top: 1px solid var(--borda);
-  margin-top: 32px;
-  padding-top: 26px;
+  border-top: 1px solid rgba(34, 31, 25, 0.12);
+  margin-top: 30px;
+  padding-top: 28px;
 }
 
 .pl-lista {
   display: grid;
+  grid-template-columns: 1fr;
   gap: 18px;
 }
 
 .pl-item {
-  border: 1px solid var(--borda);
-  border-radius: 10px;
+  min-width: 0;
+  padding: 24px;
+  border: 1px solid rgba(34, 31, 25, 0.13);
+  border-radius: 12px;
   background: #fffdf7;
-  padding: 22px;
 }
 
 .pl-item-topo {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  gap: 15px;
+  flex-wrap: wrap;
+  gap: 14px;
 }
 
 .pl-item h3 {
+  margin: 0 0 8px;
+  color: #193227;
   font-family: 'Fraunces', serif;
-  font-size: 1.2rem;
-  margin: 0 0 6px;
+  font-size: 1.25rem;
 }
 
 .pl-item p {
-  font-size: .88rem;
-  line-height: 1.6;
-  color: var(--tinta-suave);
+  font-size: 0.89rem;
+  line-height: 1.7;
+  color: #625d50;
   overflow-wrap: anywhere;
   white-space: pre-wrap;
 }
 
+.pl-item strong {
+  color: #221f19;
+}
+
 .pl-data {
-  color: var(--verde-lousa-700);
-  font-size: .8rem;
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 8px;
+  background: #ecf2e9;
+  color: #20402f;
+  font-size: 0.8rem;
   font-weight: 700;
   white-space: nowrap;
 }
 
+/* ESTADOS E MENSAGENS */
+
 .pl-vazio {
-  padding: 28px;
+  padding: 32px 22px;
   text-align: center;
-  border: 1px dashed var(--borda);
-  border-radius: 10px;
-  color: var(--tinta-suave);
+  border: 1px dashed rgba(34, 31, 25, 0.24);
+  border-radius: 12px;
+  background: #faf8f0;
+  color: #625d50;
 }
 
 .pl-feedback {
-  padding: 13px;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  font-size: .88rem;
+  padding: 14px 16px;
+  margin-bottom: 25px;
+  border-radius: 9px;
+  font-size: 0.88rem;
+  line-height: 1.5;
 }
 
 .pl-erro {
   background: #fff0ed;
   color: #a23b30;
+  border: 1px solid #efd1ca;
 }
 
 .pl-sucesso {
   background: #e5f2e8;
   color: #20402f;
+  border: 1px solid #bcdac6;
 }
 
-@media (max-width: 650px) {
-  .pl-card {
-    padding: 30px 18px;
+/* RESPONSIVIDADE PARA TABLETS */
+
+@media (max-width: 720px) {
+  .pl-pagina {
+    padding: 28px 16px 42px;
   }
 
-  .pl-topo {
-    flex-direction: column;
-    align-items: flex-start;
+  .pl-card {
+    padding: 32px 24px;
   }
 
   .pl-campos {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .pl-campo-inteiro {
+    grid-column: auto;
+  }
+}
+
+/* RESPONSIVIDADE PARA CELULARES */
+
+@media (max-width: 480px) {
+  .pl-pagina {
+    padding: 24px 12px 35px;
+  }
+
+  .pl-topo {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .pl-navegacao {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .pl-navegacao button {
+    flex: 1 1 auto;
+  }
+
+  .pl-card {
+    padding: 32px 18px 25px;
+  }
+
+  .pl-cabecalho {
+    margin-bottom: 28px;
+  }
+
+  .pl-cabecalho h1 {
+    font-size: 1.75rem;
+  }
+
+  .pl-formulario h2,
+  .pl-secao h2 {
+    font-size: 1.2rem;
+  }
+
+  .pl-acoes {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .pl-acoes button {
+    width: 100%;
+  }
+
+  .pl-item {
+    padding: 18px;
   }
 
   .pl-item-topo {
     flex-direction: column;
-  }
-
-  .pl-acoes button {
-    flex: 1;
   }
 }

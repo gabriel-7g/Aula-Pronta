@@ -1,5 +1,6 @@
 
 import { Route } from 'react-router-dom';
+
 import {
   IonApp,
   IonRouterOutlet,
@@ -11,6 +12,9 @@ import { IonReactRouter } from '@ionic/react-router';
 import Login from './pages/Login';
 import AdminUsuarios from './pages/AdminUsuarios';
 import Planejamentos from './pages/Planejamentos';
+
+// NOVA PÁGINA
+import PlanejamentosSalvos from './pages/PlanejamentosSalvos';
 
 import '@ionic/react/css/core.css';
 import '@ionic/react/css/normalize.css';
@@ -27,6 +31,7 @@ export default function App() {
     <IonApp>
       <IonReactRouter>
         <IonRouterOutlet>
+
           <Route
             path="/login"
             element={<Login />}
@@ -37,6 +42,13 @@ export default function App() {
             element={<AdminUsuarios />}
           />
 
+          {/* PÁGINA DAS AULAS SALVAS */}
+          <Route
+            path="/planejamentos/salvos"
+            element={<PlanejamentosSalvos />}
+          />
+
+          {/* PÁGINA DE CADASTRO */}
           <Route
             path="/planejamentos"
             element={<Planejamentos />}
@@ -46,6 +58,7 @@ export default function App() {
             path="/"
             element={<Login />}
           />
+
         </IonRouterOutlet>
       </IonReactRouter>
     </IonApp>
